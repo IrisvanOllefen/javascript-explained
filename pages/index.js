@@ -1,13 +1,16 @@
+import { StructuredText } from 'react-datocms'
 import { request } from '../lib/datocms'
 
 const HOMEPAGE_QUERY = `
   query HomePage {
     allPosts {
+      id
       title
+      content {
+        value
+      }
     }
   }`
-
-console.log(HOMEPAGE_QUERY)
 
 export async function getStaticProps() {
   const data = await request({
@@ -22,7 +25,12 @@ export default function Homepage({ data }) {
   return (
     <div>
       {data.allPosts.map((post) => { 
-        return post.title
+        return (
+          <article key={post.id}>
+            <h2>{post.title}</h2>
+            <StructuredText data={post.content} />
+          </article>
+        )
       })}
     </div>
   )
