@@ -19,5 +19,11 @@ export async function getStaticProps() {
 }
 
 export default function Homepage({ data }) {
-  return <div>{JSON.stringify(data, null, 2)}</div>
+  return (
+    <div>
+      {data.allPosts.map((post) => { 
+        return post.title
+      })}
+    </div>
+  )
 }
