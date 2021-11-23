@@ -2,37 +2,42 @@ import { StructuredText } from 'react-datocms'
 import { request } from '../lib/datocms'
 import Layout from '../components/applayout'
 
-const HOMEPAGE_QUERY = `
-  query HomePage {
-    allPosts {
-      id
-      title
-      content {
-        value
-      }
-      category {
-        name
-      }
+const REACT_QUERY = `
+query ReactPage {
+  allPosts(filter: {
+    category: {
+      eq: 76436891
     }
-  }`
+  }) {
+    id
+    title
+    content {
+      value
+    }
+    category {
+      id
+      name
+    }
+  }
+}`
 
 export async function getStaticProps() {
   const data = await request({
-    query: HOMEPAGE_QUERY
+    query: REACT_QUERY
   })
   return {
     props: { data },
   }
 }
 
-export default function Homepage({ data }) {
+export default function Reactpage({ data }) {
   return (
     <Layout>
+      <h2>{data.allPosts[0].category.name} Explained</h2>
       {data.allPosts.map((post) => { 
         return (
           <article key={post.id}>
-            <h2>{post.title}</h2>
-            <h3>{post.category.name}</h3>
+            <h3>{post.title}</h3>
             <StructuredText data={post.content} />
           </article>
         )
