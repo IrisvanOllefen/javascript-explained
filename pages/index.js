@@ -1,22 +1,23 @@
 import { request } from '../lib/datocms'
 
-const HOMEPAGE_QUERY = `query HomePage($limit: IntType) {
-  allBlogPosts(first: $limit) {
-    title
-  }
-}`
+const HOMEPAGE_QUERY = `
+  query HomePage {
+    allPosts {
+      title
+    }
+  }`
+
+console.log(HOMEPAGE_QUERY)
 
 export async function getStaticProps() {
   const data = await request({
-    query: HOMEPAGE_QUERY,
-    variables: { limit: 10 }
+    query: HOMEPAGE_QUERY
   })
-
   return {
-    props: { data }
+    props: { data },
   }
 }
 
-export default function Home({ data }) {
-  return <div> {JSON.stringify(data, null, 2)} </div>
+export default function Homepage({ data }) {
+  return <div>{JSON.stringify(data, null, 2)}</div>
 }
