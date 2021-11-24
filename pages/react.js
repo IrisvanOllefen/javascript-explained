@@ -20,6 +20,9 @@ query ReactPage {
       name
     }
     slug
+    summary {
+      value
+    }
   }
 }`
 
@@ -40,9 +43,9 @@ export default function Reactpage({ data }) {
         return (
           <article key={post.id}>
             <h3>{post.title}</h3>
-            <StructuredText data={post.content} />
+            <StructuredText data={post.summary} />
             <Link href={`/react/${post.slug}`}>
-              <a>Read More</a>
+              <a className="more-link">Read More</a>
             </Link>
           </article>
         )
