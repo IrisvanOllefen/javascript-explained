@@ -30,10 +30,10 @@ export default function Homepage({ data }) {
     <Layout>
       {data.allPosts.map((post) => { 
         return (
-          <article key={post.id}>
+          <article className="container" key={post.id}>
             <h2>{post.title}</h2>
             <h3>{post.category.name}</h3>
-            <StructuredText data={post.content} />
+            {/* <StructuredText data={post.content} /> */}
           </article>
         )
       })}

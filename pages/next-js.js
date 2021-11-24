@@ -20,6 +20,9 @@ query NextPage {
       name
     }
     slug
+    summary {
+      value
+    }
   }
 }`
 
@@ -40,7 +43,7 @@ export default function Nextpage({ data }) {
         return (
           <article key={post.id}>
             <h3>{post.title}</h3>
-            <StructuredText data={post.content} />
+            <StructuredText data={post.summary} />
             <Link href={`/next-js/${post.slug}`}>
               <a>Read More</a>
             </Link>
