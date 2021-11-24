@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { StructuredText } from 'react-datocms'
 import { request } from '../lib/datocms'
 import Layout from '../components/applayout'
@@ -18,6 +19,7 @@ query NextPage {
       id
       name
     }
+    slug
   }
 }`
 
@@ -39,6 +41,9 @@ export default function Nextpage({ data }) {
           <article key={post.id}>
             <h3>{post.title}</h3>
             <StructuredText data={post.content} />
+            <Link href={`/next-js/${post.slug}`}>
+              <a>Read More</a>
+            </Link>
           </article>
         )
       })}
