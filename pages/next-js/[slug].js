@@ -2,9 +2,10 @@ import { StructuredText } from 'react-datocms'
 import Layout from '../../components/applayout'
 import { request } from '../../lib/datocms'
 
-const POST_QUERY = `
-query NextPosts {
-    allPosts {
+const POST_QUERY = (slug) => { 
+return `
+query NextPost {
+    post(filter: {slug: { eq: "${slug}"}}) {
         title
         slug
         content {
@@ -13,6 +14,7 @@ query NextPosts {
     }
 }
 `
+}
 
 export async function getStaticPaths() {
     const data = await request({ query: `{ allPosts { slug } }` })
@@ -22,10 +24,9 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps() {
-    const data = await request({
-        query: POST_QUERY
-    })
+export async function getStaticProps({params}) {
+    const slug = params.slug
+    const data = await request({ query: POST_QUERY(slug) })
     return {
         props: { data },
     }
@@ -34,10 +35,12 @@ export async function getStaticProps() {
 
 export default function Post({ data }) {
 
+    console.log(data)
+    
     return (
         <Layout>
-            <h2>{data.allPosts[0].title}</h2>
-            <StructuredText data={data.allPosts[0].content.value} />
+            <h2>{data.post.title}</h2>
+            <StructuredText data={data.post.content.value} />
         </Layout>
     )
 }
