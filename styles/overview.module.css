@@ -1,0 +1,41 @@
+.main-category-title {
+    font-size: 2rem;
+}
+
+.subcategory-title {
+    font-size: 1.6rem;
+    color: rgb(95, 106, 117);
+    margin: 40px 0 0 0;
+}
+
+.post-wrapper {
+    margin: 0 0 70px 0;
+}
+
+.post-wrapper h4 {
+    font-size: 1.25rem;
+    border: 1px solid black;
+    border-width: 2px 0 2px 0;
+    padding: 10px 0 10px 0;
+    margin-top: 40px;
+}
+
+.post-wrapper details {
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: rgb(236, 236, 236);
+    padding: 10px;
+    margin: 20px 0 20px 0;
+    border-radius: 10px;
+}
+
+.post-wrapper summary {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+.read-more-link {
+    font-size: 1.2rem;
+    text-decoration: underline;
+    text-decoration-thickness: 15%;
+}

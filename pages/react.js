@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { StructuredText } from 'react-datocms'
 import { request } from '../lib/datocms'
 import Layout from '../components/applayout'
+import styles from '../styles/overview.module.css'
 
 const REACT_QUERY = `
 query ReactPage {
@@ -50,21 +51,21 @@ export default function Reactpage({ data }) {
 
   return (
     <Layout>
-      <h2>{data.allPosts[0].category.name} Explained</h2>
+      <h2 className={styles['main-category-title']}>{data.allPosts[0].category.name} Explained</h2>
       {newArr1.map((categoryName) => {
         const posts = data.allPosts.filter((post) => post.subcategory.name === categoryName )
         return <>
-          <h3 className="subcat-title">{categoryName}</h3>
+          <h3 className={styles['subcategory-title']}>{categoryName}</h3>
           {posts.map((post) => { 
             return (
-              <article key={post.id}>
-                <h4 className="post-title">{post.title}</h4>
+              <article key={post.id} className={styles['post-wrapper']}>
+                <h4>{post.title}</h4>
                 <details> 
                   <summary>Summary</summary> 
                   <StructuredText data={post.summary} /> 
                 </details>
                 <Link href={`/react/${post.slug}`}>
-                  <a className="more-link">Read More</a>
+                  <a className={styles['read-more-link']}>Read More</a>
                 </Link>
               </article>
             )

@@ -1,6 +1,7 @@
 import { StructuredText } from 'react-datocms'
 import Layout from '../../components/applayout'
 import { request } from '../../lib/datocms'
+import styles from '../../styles/post.module.css'
 
 const POST_QUERY = (slug) => { 
 return `
@@ -39,8 +40,10 @@ export default function Post({ data }) {
     
     return (
         <Layout>
-            <h2>{data.post.title}</h2>
-            <StructuredText data={data.post.content.value} />
+                <h1 className={styles['main-post-title']}>{data.post.title}</h1>
+                <article className={styles['post-wrapper']}>
+                    <StructuredText data={data.post.content.value} />
+                </article>
         </Layout>
     )
 }
