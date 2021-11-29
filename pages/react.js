@@ -47,7 +47,7 @@ export default function Reactpage({ data }) {
     if (!newArr1.includes(post.subcategory.name)) {
       newArr1.push(post.subcategory.name)
     }
-    })
+  })
 
   return (
     <Layout>
