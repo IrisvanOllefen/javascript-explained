@@ -1,24 +1,28 @@
-import { StructuredText } from 'react-datocms'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 import { request } from '../lib/datocms'
 import Layout from '../components/applayout'
 
-const HOMEPAGE_QUERY = `
-  query HomePage {
-    allPosts {
-      id
+function queryForSearching(searchingValue) {
+  return `
+  query SearchQuery {
+    allPosts(filter: {
+        title: {
+            matches: {
+              pattern: "${searchingValue}"
+            }
+        }
+    }) {
       title
-      content {
-        value
-      }
-      category {
-        name
-      }
+      slug
     }
-  }`
+  }
+`
+}
 
-export async function getStaticProps() {
+export async function getServerSideProps(context) {
   const data = await request({
-    query: HOMEPAGE_QUERY
+    query: queryForSearching(context.query.search),
   })
   return {
     props: { data },
@@ -26,14 +30,29 @@ export async function getStaticProps() {
 }
 
 export default function Homepage({ data }) {
+  const router = useRouter()
+  const [searchValue, setSearchValue] = useState('')
+
+  function changeSearchValue(event) {
+    setSearchValue(event.target.value)
+  }
+
+  function submit(event) {
+    event.preventDefault()
+    router.push(`/?search=${searchValue}`)
+  }
+
   return (
     <Layout>
-      {data.allPosts.map((post) => { 
+      <form onSubmit={submit}>
+        <input type="text" value={searchValue} onChange={changeSearchValue} />
+        <button type="submit">search</button>
+      </form>
+      {data.allPosts.map((post) => {
         return (
           <article className="container" key={post.id}>
             <h2>{post.title}</h2>
-            <h3>{post.category.name}</h3>
-            {/* <StructuredText data={post.content} /> */}
+            <h3>{post.slug}</h3>
           </article>
         )
       })}
