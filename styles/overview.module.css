@@ -45,21 +45,23 @@
   padding: 1rem;
   border-radius: 10px;
   margin: 2rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .text-input {
   padding: 0.5rem;
-  width: 40%;
   margin: 1rem;
   border: 2.5px solid rgb(135, 152, 170);
   border-radius: 5px;
   font-size: 16px;
+  width: stretch;
 }
 
 .search-button {
   background-color: rgb(135, 152, 170);
   padding: 0.5rem;
-  width: fit-content;
   margin: 1rem;
   border: 2.5px solid rgb(135, 152, 170);
   border-radius: 5px;
