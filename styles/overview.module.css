@@ -72,3 +72,23 @@
   background-color: rgb(156, 178, 201);
   border: 2.5px solid rgb(156, 178, 201);
 }
+
+@media (min-width: 750px) {
+  .all-posts-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10%;
+  }
+}
+
+@media (min-width: 1100px) {
+  .page-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .all-posts-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 5%;
+  }
+}

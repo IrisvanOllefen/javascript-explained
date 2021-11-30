@@ -51,32 +51,36 @@ export default function Homepage({ data }) {
 
   return (
     <Layout>
-      <h2>Search for a specific post:</h2>
-      <form onSubmit={submit} className={styles['search-form']}>
-        <input
-          type="text"
-          value={searchValue}
-          onChange={changeSearchValue}
-          className={styles['text-input']}
-        />
-        <button type="submit" className={styles['search-button']}>
-          search
-        </button>
-      </form>
-      {data.allPosts.map((post) => {
-        return (
-          <article key={post.id} className={styles['post-wrapper']}>
-            <h4>{post.title}</h4>
-            <details>
-              <summary>Summary</summary>
-              <StructuredText data={post.summary} />
-            </details>
-            <Link href={`/react/${post.slug}`}>
-              <a className={styles['read-more-link']}>Read More</a>
-            </Link>
-          </article>
-        )
-      })}
+      <div className={styles['page-wrapper']}>
+        <h2>Search for a specific post:</h2>
+        <form onSubmit={submit} className={styles['search-form']}>
+          <input
+            type="text"
+            value={searchValue}
+            onChange={changeSearchValue}
+            className={styles['text-input']}
+          />
+          <button type="submit" className={styles['search-button']}>
+            search
+          </button>
+        </form>
+        <div className={styles['all-posts-wrapper']}>
+          {data.allPosts.map((post) => {
+            return (
+              <article key={post.id} className={styles['post-wrapper']}>
+                <h4>{post.title}</h4>
+                <details>
+                  <summary>Summary</summary>
+                  <StructuredText data={post.summary} />
+                </details>
+                <Link href={`/react/${post.slug}`}>
+                  <a className={styles['read-more-link']}>Read More</a>
+                </Link>
+              </article>
+            )
+          })}
+        </div>
+      </div>
     </Layout>
   )
 }
