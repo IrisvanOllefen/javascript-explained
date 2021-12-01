@@ -3,8 +3,6 @@ import styles from './layout.module.css'
 
 export default function Header(props) {
   const categories = props.categories
-  //   const categoryUrls = Object.keys(categories)
-  //   console.log({ categories, categoryUrls })
 
   return (
     <div className={styles['app-header']}>
