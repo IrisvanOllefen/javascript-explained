@@ -1,31 +1,25 @@
 import Link from 'next/link'
 import styles from './layout.module.css'
 
-export default function Footer() {
-    return (
+export default function Footer(props) {
+  const categories = props.categories
+  console.log(categories)
+
+  return (
     <div className={styles['app-footer']}>
-        <ul className={styles['app-footer__link-list']}>
-            <li className={styles['app-footer__link']}>
-                <Link href='/react'>
-                    <a className={styles['app-footer__link-text']}>React Explained</a>
-                </Link>
+      <ul className={styles['app-footer__link-list']}>
+        {categories.map((category) => {
+          return (
+            <li className={styles['app-footer__link']} key={category.name}>
+              <Link href={`/${category.slug}`}>
+                <a className={styles['app-footer__link-text']}>
+                  {category.name} Explained
+                </a>
+              </Link>
             </li>
-            <li className={styles['app-footer__link']}>
-                <Link href='/next-js'>
-                    <a className={styles['app-footer__link-text']}>Next.js Explained</a>
-                </Link>
-            </li>
-            <li className={styles['app-footer__link']}>
-                <Link href='/vue-js'>
-                    <a className={styles['app-footer__link-text']}>Vue.js Explained</a>
-                </Link>
-            </li>
-            <li className={styles['app-footer__link']}>
-                <Link href='/nuxt-js'>
-                    <a className={styles['app-footer__link-text']}>Nuxt.js Explained</a>
-                </Link>
-            </li>
-        </ul>
+          )
+        })}
+      </ul>
     </div>
-    )
+  )
 }

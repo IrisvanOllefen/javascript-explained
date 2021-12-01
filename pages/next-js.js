@@ -6,6 +6,10 @@ import styles from '../styles/overview.module.css'
 
 const NEXT_QUERY = `
 query NextPage {
+  allCategories {
+		name
+    slug
+  }
   allPosts(filter: {
     category: {
       eq: 76436892
@@ -49,7 +53,7 @@ export default function Nextpage({ data }) {
   })
 
   return (
-    <Layout>
+    <Layout categories={data.allCategories}>
       <div className={styles['page-wrapper']}>
         <h2 className={styles['main-category-title']}>
           {data.allPosts[0].category.name} Explained

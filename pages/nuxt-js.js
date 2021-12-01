@@ -6,6 +6,10 @@ import styles from '../styles/overview.module.css'
 
 const NUXTJS_QUERY = `
 query NuxtPage {
+  allCategories {
+		name
+    slug
+  }
   allPosts(filter: {
     category: {
       eq: 80079373
@@ -49,7 +53,7 @@ export default function NuxtjsPage({ data }) {
   })
 
   return (
-    <Layout>
+    <Layout categories={data.allCategories}>
       <div className={styles['page-wrapper']}>
         <h2 className={styles['main-category-title']}>
           {data.allPosts[0].category.name} Explained

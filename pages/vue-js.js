@@ -6,6 +6,10 @@ import styles from '../styles/overview.module.css'
 
 const VUEJS_QUERY = `
 query VuePage {
+  allCategories {
+		name
+    slug
+  }
   allPosts(filter: {
     category: {
       eq: 80079371
@@ -49,7 +53,7 @@ export default function VuejsPage({ data }) {
   })
 
   return (
-    <Layout>
+    <Layout categories={data.allCategories}>
       <div className={styles['page-wrapper']}>
         <h2 className={styles['main-category-title']}>
           {data.allPosts[0].category.name} Explained
