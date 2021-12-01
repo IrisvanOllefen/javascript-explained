@@ -9,6 +9,10 @@ import styles from '../styles/overview.module.css'
 function queryForSearching(searchingValue) {
   return `
   query SearchQuery {
+    allCategories {
+      name
+      slug
+    }
     allPosts(filter: {
         title: {
             matches: {
@@ -50,7 +54,7 @@ export default function Homepage({ data }) {
   }
 
   return (
-    <Layout>
+    <Layout categories={data.allCategories}>
       <div className={styles['page-wrapper']}>
         <h2>Search for a specific post:</h2>
         <form onSubmit={submit} className={styles['search-form']}>
