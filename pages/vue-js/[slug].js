@@ -5,6 +5,10 @@ import { request } from '../../lib/datocms'
 const POST_QUERY = (slug) => {
   return `
 query VuePost {
+  allCategories {
+    name
+    slug
+  }
     post(filter: {slug: { eq: "${slug}"}}) {
         title
         slug
@@ -36,7 +40,7 @@ export default function Post({ data }) {
   console.log(data)
 
   return (
-    <Layout>
+    <Layout categories={data.allCategories}>
       <h2>{data.post.title}</h2>
       <StructuredText data={data.post.content.value} />
     </Layout>
