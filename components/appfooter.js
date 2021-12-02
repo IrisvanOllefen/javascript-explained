@@ -3,7 +3,6 @@ import styles from './layout.module.css'
 
 export default function Footer(props) {
   const categories = props.categories
-  console.log(categories)
 
   return (
     <div className={styles['app-footer']}>
