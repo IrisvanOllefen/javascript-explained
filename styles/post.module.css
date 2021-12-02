@@ -1,51 +1,51 @@
 .main-post-title {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .post-wrapper h2 {
-    font-size: 1.8rem;
-    color: rgb(95, 106, 117);
-    margin-top: 40px;
+  font-size: 1.8rem;
+  color: rgb(95, 106, 117);
+  margin-top: 40px;
 }
 
 .post-wrapper h3 {
-    font-size: 1.6rem;
-    color: rgb(135, 152, 170);
-    margin-top: 50px;
+  font-size: 1.6rem;
+  color: rgb(135, 152, 170);
+  margin-top: 50px;
 }
 
 .post-wrapper h4 {
-    font-size: 1.25rem;
-    border: 1px solid black;
-    border-width: 2px 0 2px 0;
-    padding: 10px 0 10px 0;
-    margin-top: 40px;
+  font-size: 1.25rem;
+  border: 1px solid black;
+  border-width: 2px 0 2px 0;
+  padding: 10px 0 10px 0;
+  margin-top: 40px;
 }
 
 .post-wrapper h5 {
-    font-size: 1.2rem;
-    background-color: rgb(229, 238, 247);
-    padding: 5px 10px;
-    width: fit-content;
-    border-radius: 10px;
-    margin-top: 40px;
+  font-size: 1.2rem;
+  background-color: rgb(229, 238, 247);
+  padding: 5px 10px;
+  width: fit-content;
+  border-radius: 10px;
+  margin-top: 40px;
 }
 
 .post-wrapper p {
-    font-size: 1rem;
-    line-height: 1.4;
-    margin-top: 20px;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-top: 20px;
 }
 
 .post-wrapper pre {
-    background-color: rgb(236, 236, 236);
-    padding: 10px;
+  background-color: rgb(236, 236, 236);
+  padding: 10px;
 }
 
 .post-wrapper code {
-    font-family: 'Source Code Pro', monospace;
-    font-size: 1rem;
-    line-height: 1.6;
-    background-color: rgb(236, 236, 236);
-    padding: 1.5px;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: rgb(236, 236, 236);
+  padding: 1.5px;
 }

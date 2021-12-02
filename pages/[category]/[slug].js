@@ -1,14 +1,15 @@
 import { StructuredText } from 'react-datocms'
 import Layout from '../../components/applayout'
 import { request } from '../../lib/datocms'
+import styles from '../../styles/post.module.css'
 
 const POST_QUERY = (slug) => {
   return `
-query NuxtPost {
-  allCategories {
-    name
-    slug
-  }
+query NextPost {
+    allCategories {
+        name
+        slug
+      }
     post(filter: {slug: { eq: "${slug}"}}) {
         title
         slug
@@ -21,9 +22,26 @@ query NuxtPost {
 }
 
 export async function getStaticPaths() {
-  const data = await request({ query: `{ allPosts { slug } }` })
+  const data = await request({
+    query: `query AllPosts {
+      allPosts {
+        slug,
+        category {
+          slug
+        }
+      }
+    }`,
+  })
+
   return {
-    paths: data.allPosts.map((post) => `/nuxt-js/${post.slug}`),
+    paths: data.allPosts.map((post) => {
+      return {
+        params: {
+          category: post.category.slug,
+          slug: post.slug,
+        },
+      }
+    }),
     fallback: false,
   }
 }
@@ -41,8 +59,10 @@ export default function Post({ data }) {
 
   return (
     <Layout categories={data.allCategories}>
-      <h2>{data.post.title}</h2>
-      <StructuredText data={data.post.content.value} />
+      <h2 className={styles['main-post-title']}>{data.post.title}</h2>
+      <div className={styles['post-wrapper']}>
+        <StructuredText data={data.post.content.value} />
+      </div>
     </Layout>
   )
 }
