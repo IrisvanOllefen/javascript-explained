@@ -1,74 +1,76 @@
-import { useState } from 'react'
-import { useRouter } from 'next/router'
 import { request } from '../lib/datocms'
-import Posts from '../components/posts'
 import Layout from '../components/applayout'
-import styles from '../styles/overview.module.css'
+import Search from '../components/search'
+import SearchResults from '../components/searchresults'
 
-function queryForSearching(searchingValue) {
+const ALL_CATEGORIES_QUERY = `
+query AllCategories {
+  allCategories {
+    id
+    name
+    slug
+  }
+}
+`
+
+function getAllPosts(categoryId) {
   return `
-  query SearchQuery {
-    allCategories {
-      name
-      slug
-    }
-    allPosts(filter: {
-        title: {
-            matches: {
-              pattern: "${searchingValue}"
-            }
+    query AllPosts {
+      allPosts(filter: {
+        category: {
+          eq: "${categoryId}"
         }
-    }) {
-      id
-      title
-      slug
-      summary {
-        value
+      }, orderBy: [postIndexNumber_ASC]) {
+        id
+        title
+        slug
+        summary {
+          value
+        }
+        category {
+          name
+        }
+        subcategory {
+          name
+        }
       }
     }
-  }
-`
+  `
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   const data = await request({
-    query: queryForSearching(context.query.search),
+    query: ALL_CATEGORIES_QUERY,
   })
+
+  // data.allCategories.forEach((category) => {
+  //   console.log(category.id)
+  //   return category.id
+  // })
+
+  console.log(data.allCategories)
+
+  const allPosts = await request({
+    query: getAllPosts(8104893),
+  })
+
   return {
-    props: { data },
+    props: { data, allPosts },
   }
 }
 
-export default function Homepage({ data }) {
-  const router = useRouter()
-  const [searchValue, setSearchValue] = useState('')
-
-  function changeSearchValue(event) {
-    setSearchValue(event.target.value)
-  }
-
-  function submit(event) {
-    event.preventDefault()
-    router.push(`/?search=${searchValue}`)
-  }
-
+export default function Homepage({ data, allPosts }) {
+  // const newArray = []
+  // allPosts.forEach((post) => {
+  //   if (!newArray.includes(post.subcategory.name)) {
+  //     newArray.push(post.subcategory.name)
+  //   }
+  // })
   return (
     <Layout categories={data.allCategories}>
-      <div className={styles['page-wrapper']}>
-        <h2>Search for a specific post:</h2>
-        <form onSubmit={submit} className={styles['search-form']}>
-          <input
-            type="text"
-            value={searchValue}
-            onChange={changeSearchValue}
-            className={styles['text-input']}
-          />
-          <button type="submit" className={styles['search-button']}>
-            search
-          </button>
-        </form>
-        <Posts posts={data.allPosts} />
-      </div>
+      <h1>hi</h1>
+      <Search />
+      <SearchResults posts={allPosts} />
     </Layout>
   )
 }
