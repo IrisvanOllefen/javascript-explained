@@ -55,8 +55,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Post({ data }) {
-  console.log(data)
-
   return (
     <Layout categories={data.allCategories}>
       <h2 className={styles['main-post-title']}>{data.post.title}</h2>
