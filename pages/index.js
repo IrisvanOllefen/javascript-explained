@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { StructuredText } from 'react-datocms'
 import { request } from '../lib/datocms'
+import Post from '../components/post'
 import Layout from '../components/applayout'
 import styles from '../styles/overview.module.css'
 
@@ -68,22 +67,7 @@ export default function Homepage({ data }) {
             search
           </button>
         </form>
-        <div className={styles['all-posts-wrapper']}>
-          {data.allPosts.map((post) => {
-            return (
-              <article key={post.id} className={styles['post-wrapper']}>
-                <h4>{post.title}</h4>
-                <details>
-                  <summary>Summary</summary>
-                  <StructuredText data={post.summary} />
-                </details>
-                <Link href={`/react/${post.slug}`}>
-                  <a className={styles['read-more-link']}>Read More</a>
-                </Link>
-              </article>
-            )
-          })}
-        </div>
+        <Post posts={data.allPosts} />
       </div>
     </Layout>
   )

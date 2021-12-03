@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { StructuredText } from 'react-datocms'
+import Post from '../../components/post'
 import { request } from '../../lib/datocms'
 import Layout from '../../components/applayout'
 import styles from '../../styles/overview.module.css'
@@ -126,22 +127,7 @@ export default function Homepage({
           return (
             <div key="bigger-wrapper">
               <h3 className={styles['subcategory-title']}>{subCategoryName}</h3>
-              <div key="wrapper" className={styles['all-posts-wrapper']}>
-                {allPosts.map((post) => {
-                  return (
-                    <article key={post.id} className={styles['post-wrapper']}>
-                      <h4>{post.title}</h4>
-                      <details>
-                        <summary>Summary</summary>
-                        <StructuredText data={post.summary} />
-                      </details>
-                      <Link href={`/${categorySlug}/${post.slug}`}>
-                        <a className={styles['read-more-link']}>Read More</a>
-                      </Link>
-                    </article>
-                  )
-                })}
-              </div>
+              <Post posts={posts} />
             </div>
           )
         })}
