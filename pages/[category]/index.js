@@ -127,7 +127,7 @@ export default function Homepage({
           return (
             <div key="bigger-wrapper">
               <h3 className={styles['subcategory-title']}>{subCategoryName}</h3>
-              <Post posts={posts} />
+              <Post posts={allPosts} />
             </div>
           )
         })}
