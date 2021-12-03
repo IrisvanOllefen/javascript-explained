@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { StructuredText } from 'react-datocms'
 import styles from '../styles/overview.module.css'
 
-export default function Post(props) {
+export default function Posts(props) {
   const posts = props.posts
-
+  const categorySlug = props.categorySlug
   return (
     <div className={styles['all-posts-wrapper']}>
       {posts.map((post) => {
@@ -15,7 +15,7 @@ export default function Post(props) {
               <summary>Summary</summary>
               <StructuredText data={post.summary} />
             </details>
-            <Link href={`/react/${post.slug}`}>
+            <Link href={`/${categorySlug}/${post.slug}`}>
               <a className={styles['read-more-link']}>Read More</a>
             </Link>
           </article>

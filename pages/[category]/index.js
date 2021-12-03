@@ -1,6 +1,4 @@
-import Link from 'next/link'
-import { StructuredText } from 'react-datocms'
-import Post from '../../components/post'
+import Posts from '../../components/posts'
 import { request } from '../../lib/datocms'
 import Layout from '../../components/applayout'
 import styles from '../../styles/overview.module.css'
@@ -11,7 +9,6 @@ query AllCategories {
     slug
   }
 }
-
 `
 
 function categoryQuery(slug) {
@@ -125,9 +122,9 @@ export default function Homepage({
             (post) => post.subcategory.name === subCategoryName
           )
           return (
-            <div key="bigger-wrapper">
+            <div key={subCategoryName}>
               <h3 className={styles['subcategory-title']}>{subCategoryName}</h3>
-              <Post posts={allPosts} />
+              <Posts posts={allPosts} categorySlug={categorySlug} />
             </div>
           )
         })}

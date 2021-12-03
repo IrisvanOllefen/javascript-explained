@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { request } from '../lib/datocms'
-import Post from '../components/post'
+import Posts from '../components/posts'
 import Layout from '../components/applayout'
 import styles from '../styles/overview.module.css'
 
@@ -67,7 +67,7 @@ export default function Homepage({ data }) {
             search
           </button>
         </form>
-        <Post posts={data.allPosts} />
+        <Posts posts={data.allPosts} />
       </div>
     </Layout>
   )
