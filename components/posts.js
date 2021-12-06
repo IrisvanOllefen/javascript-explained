@@ -6,10 +6,13 @@ export default function Posts(props) {
   const posts = props.posts
   const categorySlug = props.categorySlug
   return (
-    <div className={styles['all-posts-wrapper']}>
+    <div className={styles['all-posts-overview-wrapper']}>
       {posts.map((post) => {
         return (
-          <article key={post.id} className={styles['post-wrapper']}>
+          <article
+            key={post.id}
+            className={styles['single-post-overview-wrapper']}
+          >
             <h4>{post.title}</h4>
             <details>
               <summary>Summary</summary>

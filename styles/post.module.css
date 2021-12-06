@@ -1,3 +1,11 @@
+/* SPACING */
+.complete-post-wrapper {
+  width: 85vw;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+}
+
+/* TYPOGRAPHY */
 .main-post-title {
   font-size: 2rem;
 }

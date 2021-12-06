@@ -5,11 +5,14 @@ import styles from '../styles/overview.module.css'
 export default function SearchResults(props) {
   const posts = props.posts
   return (
-    <div className={styles['all-posts-wrapper']}>
+    <div className={styles['all-posts-overview-wrapper']}>
       {posts.map((post) => {
         return (
-          <article key={post.id} className={styles['post-wrapper']}>
-            <div className={styles['subcategory-wrapper']}>
+          <article
+            key={post.id}
+            className={styles['single-post-overview-wrapper']}
+          >
+            <div className={styles['subcat-title-wrapper']}>
               <h3 className={styles['subcategory-title-in']}>In: </h3>
               <h3 className={styles['subcategory-title']}>
                 {post.category.name}

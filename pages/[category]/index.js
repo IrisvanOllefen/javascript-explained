@@ -114,7 +114,7 @@ export default function Homepage({
 
   return (
     <Layout categories={allCategories}>
-      <div className={styles['page-wrapper']}>
+      <div className={styles['overview-page--wrapper']}>
         <h2 className={styles['main-category-title']}>
           {categoryName} Explained
         </h2>
