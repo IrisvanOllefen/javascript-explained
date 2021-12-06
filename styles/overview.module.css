@@ -2,10 +2,15 @@
   font-size: 2rem;
 }
 
-.subcategory-title {
+.subcategory-title,
+.subcategory-title-in {
   font-size: 1.6rem;
   color: rgb(95, 106, 117);
   margin: 40px 0 0 0;
+}
+
+.subcategory-title-in {
+  color: black;
 }
 
 .post-wrapper {
@@ -75,6 +80,12 @@
 .search-button:hover {
   background-color: rgb(156, 178, 201);
   border: 2.5px solid rgb(156, 178, 201);
+}
+
+.subcategory-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 @media (min-width: 750px) {

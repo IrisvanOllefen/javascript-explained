@@ -1,76 +1,57 @@
 import { request } from '../lib/datocms'
+import SearchResults from '../components/searchresults'
 import Layout from '../components/applayout'
 import Search from '../components/search'
-import SearchResults from '../components/searchresults'
+import styles from '../styles/overview.module.css'
 
-const ALL_CATEGORIES_QUERY = `
-query AllCategories {
-  allCategories {
-    id
-    name
-    slug
-  }
-}
-`
-
-function getAllPosts(categoryId) {
+function queryForSearching(searchingValue) {
   return `
-    query AllPosts {
-      allPosts(filter: {
-        category: {
-          eq: "${categoryId}"
+  query SearchQuery {
+    allCategories {
+      name
+      slug
+    }
+    allPosts(filter: {
+        title: {
+            matches: {
+              pattern: "${searchingValue}"
+            }
         }
-      }, orderBy: [postIndexNumber_ASC]) {
-        id
-        title
+    }) {
+      id
+      title
+      slug
+      summary {
+        value
+      }
+      category {
         slug
-        summary {
-          value
-        }
-        category {
-          name
-        }
-        subcategory {
-          name
-        }
+        name
       }
     }
-  `
+  }
+`
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(context) {
   const data = await request({
-    query: ALL_CATEGORIES_QUERY,
-  })
-
-  // data.allCategories.forEach((category) => {
-  //   console.log(category.id)
-  //   return category.id
-  // })
-
-  console.log(data.allCategories)
-
-  const allPosts = await request({
-    query: getAllPosts(8104893),
+    query: queryForSearching(context.query.search),
   })
 
   return {
-    props: { data, allPosts },
+    props: {
+      data,
+    },
   }
 }
 
-export default function Homepage({ data, allPosts }) {
-  // const newArray = []
-  // allPosts.forEach((post) => {
-  //   if (!newArray.includes(post.subcategory.name)) {
-  //     newArray.push(post.subcategory.name)
-  //   }
-  // })
+export default function Homepage({ data }) {
   return (
     <Layout categories={data.allCategories}>
-      <h1>hi</h1>
-      <Search />
-      <SearchResults posts={allPosts} />
+      <div className={styles['page-wrapper']}>
+        <Search />
+        <SearchResults posts={data.allPosts} />
+      </div>
     </Layout>
   )
 }

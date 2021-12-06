@@ -24,7 +24,7 @@ query NextPost {
 export async function getStaticPaths() {
   const data = await request({
     query: `query AllPosts {
-      allPosts {
+      allPosts(first: 100) {
         slug,
         category {
           slug
