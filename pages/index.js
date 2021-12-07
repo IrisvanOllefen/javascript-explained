@@ -1,5 +1,5 @@
 import { request } from '../lib/datocms'
-import SearchResults from '../components/searchresults'
+import Posts from '../components/posts'
 import Layout from '../components/applayout'
 import Search from '../components/search'
 import styles from '../styles/overview.module.css'
@@ -50,7 +50,7 @@ export default function Homepage({ data }) {
     <Layout categories={data.allCategories}>
       <div className={styles['page-wrapper']}>
         <Search />
-        <SearchResults posts={data.allPosts} />
+        <Posts posts={data.allPosts} />
       </div>
     </Layout>
   )

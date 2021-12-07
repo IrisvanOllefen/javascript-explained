@@ -73,7 +73,6 @@ export async function getStaticPaths() {
     }
   })
 
-  console.log(paths)
   return {
     paths: paths,
     fallback: false,
@@ -114,7 +113,7 @@ export default function Homepage({
 
   return (
     <Layout categories={allCategories}>
-      <div className={styles['overview-page--wrapper']}>
+      <div className={styles['page-wrapper']}>
         <h2 className={styles['main-category-title']}>
           {categoryName} Explained
         </h2>
