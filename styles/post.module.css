@@ -48,6 +48,7 @@
 .post-wrapper pre {
   background-color: rgb(236, 236, 236);
   padding: 10px;
+  overflow-x: auto;
 }
 
 .post-wrapper code {
