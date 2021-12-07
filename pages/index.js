@@ -12,11 +12,11 @@ function queryForSearching(searchingValue) {
       slug
     }
     allPosts(filter: {
-        title: {
-            matches: {
-              pattern: "${searchingValue}"
-            }
+      content: {
+        matches: {
+          pattern: "${searchingValue}"
         }
+      }
     }) {
       id
       title
@@ -27,6 +27,9 @@ function queryForSearching(searchingValue) {
       category {
         slug
         name
+      }
+      content {
+        value
       }
     }
   }
