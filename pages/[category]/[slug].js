@@ -75,16 +75,20 @@ export default function Post({ data }) {
         <div className={styles['post-wrapper']}>
           <StructuredText
             data={data.post.content}
+            className={styles['structured-text']}
             renderBlock={({ record }) => {
               switch (record.__typename) {
                 case 'ImageBlockRecord':
                   return (
-                    <Image
-                      src={record.image.url}
-                      alt={record.image.alt}
-                      width={record.image.width}
-                      height={record.image.height}
-                    />
+                    <div className={styles['image-wrapper']}>
+                      <Image
+                        src={record.image.url}
+                        alt={record.image.alt}
+                        width={record.image.width}
+                        height={record.image.height}
+                        layout={'responsive'}
+                      />
+                    </div>
                   )
                 default:
                   return null
