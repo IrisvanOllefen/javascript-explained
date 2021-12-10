@@ -40,6 +40,11 @@
 }
 
 /* SPACING */
+.page-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 .all-posts-overview-wrapper {
   margin-bottom: 3rem;
 }
