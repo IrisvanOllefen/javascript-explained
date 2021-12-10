@@ -19,6 +19,7 @@ export default function Footer(props) {
           )
         })}
       </ul>
+      <p>A website by Iris van Ollefen ©</p>
     </div>
   )
 }
