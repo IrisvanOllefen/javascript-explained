@@ -53,16 +53,18 @@ export default function Homepage({ data }) {
     <Layout categories={data.allCategories}>
       <div className={styles['page-wrapper']}>
         <Search />
-        {data.allPosts.map((post) => {
-          return (
-            <Post
-              key={post.id}
-              post={post}
-              href={`${post.category.slug}/${post.slug}`}
-              showCategoryTitle={true}
-            />
-          )
-        })}
+        <div className={styles['all-posts-overview-wrapper']}>
+          {data.allPosts.map((post) => {
+            return (
+              <Post
+                key={post.id}
+                post={post}
+                href={`${post.category.slug}/${post.slug}`}
+                showCategoryTitle={true}
+              />
+            )
+          })}
+        </div>
       </div>
     </Layout>
   )

@@ -124,16 +124,18 @@ export default function Homepage({
           return (
             <div key={subCategoryName}>
               <h3 className={styles['subcategory-title']}>{subCategoryName}</h3>
-              {allPosts.map((post) => {
-                return (
-                  <Post
-                    key={post.id}
-                    post={post}
-                    href={`${categorySlug}/${post.slug}`}
-                    showCategoryTitle={false}
-                  />
-                )
-              })}
+              <div className={styles['all-posts-overview-wrapper']}>
+                {allPosts.map((post) => {
+                  return (
+                    <Post
+                      key={post.id}
+                      post={post}
+                      href={`${categorySlug}/${post.slug}`}
+                      showCategoryTitle={false}
+                    />
+                  )
+                })}
+              </div>
             </div>
           )
         })}
