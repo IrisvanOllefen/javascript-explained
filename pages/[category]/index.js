@@ -1,7 +1,7 @@
-import Posts from '../../components/posts'
 import { request } from '../../lib/datocms'
 import Layout from '../../components/applayout'
 import styles from '../../styles/overview.module.css'
+import Post from '../../components/post'
 
 const ALL_CATEGORIES_QUERY = `
 query AllCategories {
@@ -124,7 +124,16 @@ export default function Homepage({
           return (
             <div key={subCategoryName}>
               <h3 className={styles['subcategory-title']}>{subCategoryName}</h3>
-              <Posts posts={allPosts} categorySlug={categorySlug} />
+              {allPosts.map((post) => {
+                return (
+                  <Post
+                    key={post.id}
+                    post={post}
+                    href={`${categorySlug}/${post.slug}`}
+                    showCategoryTitle={false}
+                  />
+                )
+              })}
             </div>
           )
         })}

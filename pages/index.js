@@ -1,7 +1,7 @@
 import { request } from '../lib/datocms'
-import Posts from '../components/posts'
 import Layout from '../components/applayout'
 import Search from '../components/search'
+import Post from '../components/post'
 import styles from '../styles/overview.module.css'
 
 function queryForSearching(searchingValue) {
@@ -53,7 +53,16 @@ export default function Homepage({ data }) {
     <Layout categories={data.allCategories}>
       <div className={styles['page-wrapper']}>
         <Search />
-        <Posts posts={data.allPosts} />
+        {data.allPosts.map((post) => {
+          return (
+            <Post
+              key={post.id}
+              post={post}
+              href={`${post.category.slug}/${post.slug}`}
+              showCategoryTitle={true}
+            />
+          )
+        })}
       </div>
     </Layout>
   )
